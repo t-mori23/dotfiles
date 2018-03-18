@@ -57,3 +57,6 @@ hook_add = 'let g:ale_sign_column_always = 1'
 
 [[plugins]]
 repo = 'slim-template/vim-slim'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'

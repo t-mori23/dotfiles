@@ -190,6 +190,8 @@ set nostartofline      "移動コマンド使用時にカーソルを先頭に�
 
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif   "前回終了時のカーソル位置へ移動
 
+" Add jbuilder syntax highlighting
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 
 "*****************************************************************************
 """ Mappings
