@@ -16,7 +16,6 @@ fi
 #autoload -Uz colors
 #colors
 
-# vi 風キーバインドにする
 bindkey -e
 
 # ヒストリの設定

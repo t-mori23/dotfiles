@@ -32,9 +32,6 @@ hook_post_update = '''
 repo = 'vim-scripts/taglist.vim'
 
 [[plugins]]
-repo = 'scrooloose/nerdtree'
-
-[[plugins]]
 repo = 'roxma/nvim-yarp'
 if   = '''!has('nvim')'''
 
