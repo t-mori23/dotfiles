@@ -115,8 +115,10 @@ let g:vim_json_syntax_conceal=0
 command E Ex
 
 "" StatusLine
-set statusline+=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" set statusline+=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
+"" Turn off paste mode when leaving insert
+autocmd InsertLeave * set nopaste
 
 "*****************************************************************************
 "" Tabs
@@ -187,11 +189,12 @@ set matchtime=3        "showmatchの表示時間
 set scrolloff=8        "上下の視界確保
 set sidescrolloff=16   "左右の視界確保
 set nostartofline      "移動コマンド使用時にカーソルを先頭に置かない
+set noshowmode         "デフォルトのモード表示を消す
 
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif   "前回終了時のカーソル位置へ移動
 
 " Add jbuilder syntax highlighting
-au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+au BufNewFile,BufRead *.jbuilder set ft=ruby
 
 "*****************************************************************************
 """ Mappings
@@ -199,9 +202,9 @@ au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 "" Copy/Paste/Cut
 set clipboard=unnamed
 
-" <TAB>: completion.                                         
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"   
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
+" Buffer
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
 "******************
 
 
