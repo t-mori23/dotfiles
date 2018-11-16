@@ -197,15 +197,19 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 au BufNewFile,BufRead *.jbuilder set ft=ruby
 
 "*****************************************************************************
+""" Csv highlighting
+"*****************************************************************************
+function! CSVH(x)
+    execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
+    execute 'normal ^'.a:x.'f,'
+endfunction
+command! -nargs=1 Csvhl :call CSVH(<args>)
+
+"*****************************************************************************
 """ Mappings
 "*****************************************************************************
 "" Copy/Paste/Cut
 set clipboard=unnamed
-
-" Buffer
-nnoremap <silent> <C-j> :bprev<CR>
-nnoremap <silent> <C-k> :bnext<CR>
-"******************
 
 
 "*****************************************************************************
@@ -238,8 +242,6 @@ augroup LargeFile
 augroup END
 
 function LargeFile()
-  " no syntax highlighting etc
-  set eventignore+=FileType
   " save memory when other file is viewed
   setlocal bufhidden=unload
   " display message
